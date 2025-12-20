@@ -6,10 +6,12 @@ def preprocess_data(df, is_train=True):
     df = df.drop(columns=["Cabin","Ticket","Name"],errors="ignore")
 
     #Fill missing Age wtih median 
-    df["Age"].fillna(df["Age"].median(),inplace=True)
-    
+    df["Age"]=df["Age"].fillna(df["Age"].median())
+
+    df["Fare"]=df["Fare"].fillna(df["Fare"].median())
+
     #Fill missing embarked with the mode
-    df["Embarked"].fillna(df["Embarked"].mode()[0], inplace=True)
+    df["Embarked"]=df["Embarked"].fillna(df["Embarked"].mode()[0])
 
     #Encode sex(binary encoding)
     df["Sex"]=df["Sex"].map({"male":0, "female":1})
